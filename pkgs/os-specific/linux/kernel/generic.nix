@@ -6,6 +6,7 @@
 , gmp ? null
 , libmpc ? null
 , mpfr ? null
+, kmod ? null
 , pahole
 , lib
 , stdenv
@@ -140,7 +141,7 @@ let
     passAsFile = [ "kernelConfig" ];
 
     depsBuildBuild = [ buildPackages.stdenv.cc ];
-    nativeBuildInputs = [ perl gmp libmpc mpfr bison flex ]
+    nativeBuildInputs = [ perl gmp libmpc mpfr bison flex kmod ]
       ++ lib.optional (lib.versionAtLeast version "5.2") pahole
       ++ lib.optionals withRust [ rust-bindgen rustc ]
     ;
